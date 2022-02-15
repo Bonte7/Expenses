@@ -27,8 +27,8 @@ function NewExpenseForm(props) {
 
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
-            date: enteredDate
+            amount: +enteredAmount,
+            date: new Date(enteredDate)
         };
 
         //call the function from NewExpense.js and pass the expenseData object to it. 
@@ -39,29 +39,32 @@ function NewExpenseForm(props) {
         setDate("");
     }
 
-    return (
 
-        <form onSubmit={submitHandler}>
-            <div className='new-expense__controls'>
-                <div className='new-expense__control'>
-                    <label>Title</label>
-                    <input type="text" value={enteredTitle} onChange={titleChangeHandler}></input>
-                </div>
-                <div className='new-expense__control'>
-                    <label>Amount</label>
-                    <input type="number" value={enteredAmount} min="0.01" step="0.01" onChange={amountChangedHandler}></input>
-                </div>
-                <div className='new-expense__control'>
-                    <label>Date</label>
-                    <input type="date" value={enteredDate} onChange={dateChangedHandler}></input>
-                </div>
-                <div className="new-expense__actions">
-                    <button type="submit">Add Expense</button>
-                </div>
-            </div>
-        </form>
+        return (
 
-    );
+            <form onSubmit={submitHandler}>
+                <div className='new-expense__controls'>
+                    <div className='new-expense__control'>
+                        <label>Title</label>
+                        <input type="text" value={enteredTitle} onChange={titleChangeHandler}></input>
+                    </div>
+                    <div className='new-expense__control'>
+                        <label>Amount</label>
+                        <input type="number" value={enteredAmount} min="0.01" step="0.01" onChange={amountChangedHandler}></input>
+                    </div>
+                    <div className='new-expense__control'>
+                        <label>Date</label>
+                        <input type="date" value={enteredDate} onChange={dateChangedHandler}></input>
+                    </div>
+                    <div className="new-expense__actions">
+                        <button type="button" onClick={props.onCancel}>Cancel</button>
+                        <button type="submit">Add Expense</button>
+                    </div>
+                </div>
+            </form>
+    
+        );
+    
 }
 
 export default NewExpenseForm;
